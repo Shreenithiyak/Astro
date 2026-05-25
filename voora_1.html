@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voora Construction — Top Builders in Chennai</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#0a1628;
+  --navy2:#0d1f3c;
+  --gold:#c9a84c;
+  --gold2:#e8c96a;
+  --gold3:rgba(201,168,76,0.15);
+  --ivory:#f7f3ee;
+  --warm:#e8ddd0;
+  --muted:#8a7f74;
+  --white:#ffffff;
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Montserrat',sans-serif;
+  font-weight:300;
+  background:var(--navy);
+  color:var(--ivory);
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* CURSOR */
+.cur{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;}
+.cur-ring{position:fixed;width:40px;height:40px;border:1px solid rgba(201,168,76,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .15s ease,width .2s,height .2s;}
+
+/* NOISE */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");pointer-events:none;z-index:8000;opacity:.5;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 64px;
+  transition:background .4s,backdrop-filter .4s;
+}
+nav.scrolled{background:rgba(10,22,40,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.12);}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:400;letter-spacing:6px;
+  color:var(--gold);
+  display:flex;flex-direction:column;line-height:1;
+}
+.logo small{font-size:7px;letter-spacing:4px;color:rgba(247,243,238,.4);font-family:'Montserrat',sans-serif;font-weight:300;margin-top:4px;}
+.nav-links{display:flex;gap:36px;}
+.nav-links a{
+  color:rgba(247,243,238,.55);
+  text-decoration:none;font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  transition:color .3s;position:relative;
+}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-links a:hover::after{width:100%;}
+.nav-btn{
+  background:transparent;border:1px solid rgba(201,168,76,.5);
+  color:var(--gold);padding:11px 28px;
+  font-size:8px;letter-spacing:3px;text-transform:uppercase;
+  font-family:'Montserrat',sans-serif;cursor:none;
+  transition:all .3s;
+}
+.nav-btn:hover{background:var(--gold);color:var(--navy);}
+
+/* HERO */
+.hero{
+  min-height:100vh;position:relative;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 64px 80px;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 90% at 70% 40%,rgba(201,168,76,.06) 0%,transparent 60%),
+    linear-gradient(180deg,rgba(10,22,40,.3) 0%,rgba(10,22,40,.7) 100%),
+    linear-gradient(135deg,#0a1628 0%,#0f2542 50%,#150a02 100%);
+}
+/* Animated building silhouette */
+.hero-skyline{
+  position:absolute;bottom:0;left:0;right:0;height:45%;
+  opacity:.07;
+}
+.hero-vline{position:absolute;right:180px;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,rgba(201,168,76,.25),transparent);}
+.hero-hline{position:absolute;bottom:200px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.15),transparent);}
+
+.hero-tag{
+  font-size:9px;letter-spacing:5px;color:var(--gold);
+  margin-bottom:28px;
+  display:flex;align-items:center;gap:16px;
+  opacity:0;animation:fadeUp .8s .3s forwards;
+}
+.hero-tag-line{width:36px;height:1px;background:var(--gold);}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(56px,8vw,112px);
+  font-weight:300;line-height:.92;
+  margin-bottom:36px;
+  opacity:0;animation:fadeUp .9s .5s forwards;
+}
+.hero h1 em{font-style:italic;color:var(--gold);}
+.hero-sub{
+  font-size:11px;letter-spacing:2px;
+  color:rgba(247,243,238,.45);
+  max-width:500px;line-height:2;
+  margin-bottom:50px;
+  opacity:0;animation:fadeUp .9s .7s forwards;
+}
+.hero-actions{
+  display:flex;align-items:center;gap:32px;
+  opacity:0;animation:fadeUp .9s .9s forwards;
+}
+.btn-gold{
+  background:var(--gold);color:var(--navy);
+  padding:16px 44px;font-size:9px;letter-spacing:4px;
+  text-transform:uppercase;font-family:'Montserrat',sans-serif;
+  font-weight:500;border:none;cursor:none;
+  transition:all .3s;position:relative;overflow:hidden;
+}
+.btn-gold::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.15);transform:translateX(-100%);transition:transform .3s;}
+.btn-gold:hover::after{transform:translateX(0);}
+.btn-ghost{
+  background:transparent;border:1px solid rgba(201,168,76,.35);
+  color:rgba(247,243,238,.7);padding:15px 36px;
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  font-family:'Montserrat',sans-serif;cursor:none;transition:all .3s;
+}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+
+/* HERO FLOAT STATS */
+.hero-stats{
+  position:absolute;right:64px;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:2px;
+  opacity:0;animation:fadeIn 1s 1.2s forwards;
+}
+.stat-block{
+  background:rgba(247,243,238,.03);
+  border:1px solid rgba(201,168,76,.15);
+  padding:28px 32px;text-align:center;
+  min-width:160px;
+  backdrop-filter:blur(8px);
+  transition:background .3s;
+}
+.stat-block:hover{background:rgba(201,168,76,.07);}
+.stat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:44px;font-weight:300;color:var(--gold);line-height:1;
+}
+.stat-txt{font-size:7px;letter-spacing:3px;color:rgba(247,243,238,.4);margin-top:6px;}
+
+/* SCROLL INDICATOR */
+.scroll-ind{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;animation:fadeIn 1s 1.6s forwards;
+}
+.scroll-ind span{font-size:7px;letter-spacing:4px;color:rgba(247,243,238,.3);}
+.scroll-bar{width:1px;height:56px;background:linear-gradient(180deg,var(--gold),transparent);animation:scrollAnim 2s infinite;}
+
+/* MARQUEE */
+.marquee-wrap{
+  padding:22px 0;
+  background:var(--gold);
+  overflow:hidden;white-space:nowrap;
+}
+.marquee-inner{display:inline-flex;animation:marquee 22s linear infinite;}
+.marquee-item{
+  font-size:8px;letter-spacing:4px;
+  color:var(--navy);font-weight:500;
+  padding:0 32px;text-transform:uppercase;
+}
+.marquee-dot{color:rgba(10,22,40,.4);}
+
+/* SECTION COMMON */
+section{padding:110px 64px;position:relative;}
+.sec-label{font-size:8px;letter-spacing:5px;color:var(--gold);margin-bottom:14px;text-transform:uppercase;}
+.sec-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(34px,4vw,58px);font-weight:300;line-height:1.05;
+}
+.sec-title em{font-style:italic;color:var(--gold);}
+.gold-rule{width:48px;height:1px;background:var(--gold);margin:24px 0 36px;}
+
+/* ABOUT */
+.about{
+  display:grid;grid-template-columns:1.1fr 1fr;
+  gap:80px;align-items:center;
+  border-top:1px solid rgba(201,168,76,.1);
+}
+.about-img{
+  aspect-ratio:4/5;
+  background:rgba(201,168,76,.05);
+  border:1px solid rgba(201,168,76,.12);
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.about-img-inner{
+  font-family:'Cormorant Garamond',serif;
+  font-size:200px;font-weight:300;
+  color:rgba(201,168,76,.08);
+  font-style:italic;user-select:none;
+}
+.about-img::after{
+  content:'30+ YEARS OF EXCELLENCE';
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(0deg,rgba(10,22,40,.95),transparent);
+  padding:40px 32px 28px;
+  font-size:8px;letter-spacing:4px;color:var(--gold);
+}
+.about-year-badge{
+  position:absolute;top:-16px;right:-16px;
+  width:90px;height:90px;
+  border:1px solid rgba(201,168,76,.3);
+  background:var(--navy);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+}
+.badge-big{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold);line-height:1;}
+.badge-sm{font-size:6px;letter-spacing:2px;color:rgba(247,243,238,.4);text-align:center;}
+.about-text p{
+  font-size:13px;color:rgba(247,243,238,.55);
+  line-height:2;margin-bottom:18px;letter-spacing:.3px;
+}
+.about-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px;}
+.pill{
+  border:1px solid rgba(201,168,76,.25);
+  padding:8px 18px;font-size:8px;letter-spacing:2px;color:var(--gold);
+}
+
+/* PROJECTS */
+.projects{border-top:1px solid rgba(201,168,76,.1);}
+.projects-head{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:60px;
+}
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:3px;
+}
+.proj-card{
+  position:relative;overflow:hidden;
+  cursor:none;min-height:340px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+.proj-bg{
+  position:absolute;inset:0;
+  transition:transform .6s ease;
+}
+.proj-card:hover .proj-bg{transform:scale(1.04);}
+.proj-card:nth-child(1) .proj-bg{background:linear-gradient(135deg,#0d2040 0%,#1a3060 100%);}
+.proj-card:nth-child(2) .proj-bg{background:linear-gradient(135deg,#1a0a05 0%,#2d1508 100%);}
+.proj-card:nth-child(3) .proj-bg{background:linear-gradient(135deg,#0a1a10 0%,#0f2518 100%);}
+.proj-card:nth-child(4) .proj-bg{background:linear-gradient(135deg,#1a1208 0%,#2a1e0a 100%);}
+.proj-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(10,22,40,.9) 0%,transparent 60%);
+}
+.proj-geo{
+  position:absolute;top:24px;right:24px;
+  width:60px;height:60px;
+  border:1px solid rgba(201,168,76,.2);
+  display:flex;align-items:center;justify-content:center;
+}
+.proj-num{font-family:'Cormorant Garamond',serif;font-size:18px;color:rgba(201,168,76,.5);}
+.proj-inner{position:relative;z-index:1;padding:36px 40px;}
+.proj-type{font-size:7px;letter-spacing:4px;color:var(--gold);margin-bottom:10px;}
+.proj-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:300;
+  margin-bottom:8px;line-height:1.15;
+}
+.proj-loc{font-size:9px;color:rgba(247,243,238,.4);letter-spacing:2px;margin-bottom:20px;}
+.proj-price{
+  font-size:18px;font-family:'Cormorant Garamond',serif;
+  color:var(--gold);margin-bottom:18px;
+}
+.proj-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.proj-tag{
+  background:rgba(201,168,76,.12);
+  color:var(--gold);font-size:7px;
+  padding:4px 10px;letter-spacing:2px;
+  border:1px solid rgba(201,168,76,.2);
+}
+.proj-arrow{
+  position:absolute;top:36px;left:40px;
+  font-size:20px;color:var(--gold);
+  opacity:0;transform:translate(-10px,10px);
+  transition:all .35s;
+}
+.proj-card:hover .proj-arrow{opacity:1;transform:translate(0,0);}
+
+/* WHY VOORA */
+.why{
+  background:rgba(201,168,76,.03);
+  border-top:1px solid rgba(201,168,76,.1);
+  border-bottom:1px solid rgba(201,168,76,.1);
+}
+.why-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:rgba(201,168,76,.08);
+  margin-top:64px;
+}
+.why-card{
+  background:var(--navy);
+  padding:44px 32px;
+  transition:background .3s;
+  position:relative;overflow:hidden;
+}
+.why-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--gold);transform:scaleX(0);transition:transform .4s;transform-origin:left;
+}
+.why-card:hover::before{transform:scaleX(1);}
+.why-card:hover{background:rgba(201,168,76,.06);}
+.why-icon{font-size:32px;margin-bottom:22px;display:block;line-height:1;}
+.why-num{
+  font-family:'Cormorant Garamond',serif;
+  position:absolute;top:16px;right:20px;
+  font-size:56px;color:rgba(201,168,76,.06);line-height:1;
+}
+.why-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:300;
+  color:var(--ivory);margin-bottom:12px;
+}
+.why-desc{font-size:10px;color:rgba(247,243,238,.4);line-height:1.9;letter-spacing:.5px;}
+
+/* TESTIMONIALS */
+.testi{border-top:1px solid rgba(201,168,76,.1);}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:64px;}
+.testi-card{
+  background:rgba(247,243,238,.02);
+  border:1px solid rgba(201,168,76,.12);
+  padding:36px 32px;
+  transition:border-color .3s,background .3s;
+  position:relative;
+}
+.testi-card::before{
+  content:'"';
+  font-family:'Cormorant Garamond',serif;
+  font-size:100px;font-style:italic;
+  color:rgba(201,168,76,.08);
+  position:absolute;top:-10px;left:20px;
+  line-height:1;
+}
+.testi-card:hover{border-color:rgba(201,168,76,.35);background:rgba(201,168,76,.04);}
+.testi-stars{color:var(--gold);font-size:11px;margin-bottom:18px;letter-spacing:3px;}
+.testi-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-style:italic;font-weight:300;
+  color:rgba(247,243,238,.7);line-height:1.8;
+  margin-bottom:24px;
+}
+.testi-name{font-size:9px;letter-spacing:2px;color:var(--ivory);font-weight:400;margin-bottom:4px;}
+.testi-proj{font-size:8px;letter-spacing:2px;color:var(--gold);}
+
+/* CONTACT */
+.contact{
+  border-top:1px solid rgba(201,168,76,.1);
+  text-align:center;position:relative;overflow:hidden;
+}
+.contact-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(201,168,76,.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.contact h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(44px,6vw,84px);font-weight:300;
+  line-height:1;margin-bottom:20px;position:relative;
+}
+.contact h2 em{font-style:italic;color:var(--gold);}
+.contact-sub{font-size:10px;letter-spacing:3px;color:rgba(247,243,238,.35);margin-bottom:70px;}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;max-width:900px;margin:0 auto;text-align:left;
+}
+.contact-info-block{margin-bottom:30px;}
+.ci-label{font-size:7px;letter-spacing:3px;color:var(--gold);margin-bottom:8px;}
+.ci-val{font-size:13px;color:rgba(247,243,238,.6);letter-spacing:.5px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.f-group{display:flex;flex-direction:column;gap:7px;margin-bottom:16px;}
+.f-label{font-size:7px;letter-spacing:3px;color:var(--gold);}
+.f-input,.f-select,.f-area{
+  background:rgba(247,243,238,.03);
+  border:none;border-bottom:1px solid rgba(201,168,76,.2);
+  color:var(--ivory);
+  font-family:'Montserrat',sans-serif;font-size:12px;font-weight:300;
+  padding:12px 0;outline:none;letter-spacing:.5px;
+  transition:border-color .3s;
+}
+.f-input:focus,.f-select:focus,.f-area:focus{border-color:var(--gold);}
+.f-input::placeholder,.f-area::placeholder{color:rgba(247,243,238,.2);}
+.f-select option{background:var(--navy2);}
+.f-area{resize:none;height:90px;}
+.submit-btn{
+  width:100%;background:var(--gold);color:var(--navy);
+  padding:16px;font-size:9px;letter-spacing:4px;
+  font-family:'Montserrat',sans-serif;font-weight:500;
+  border:none;cursor:none;text-transform:uppercase;
+  margin-top:8px;transition:all .3s;
+}
+.submit-btn:hover{background:var(--gold2);}
+
+/* FOOTER */
+footer{
+  border-top:1px solid rgba(201,168,76,.12);
+  padding:36px 64px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;letter-spacing:6px;color:rgba(247,243,238,.3);
+}
+.footer-copy{font-size:8px;letter-spacing:2px;color:rgba(247,243,238,.2);}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{
+  font-size:8px;letter-spacing:2px;
+  color:rgba(247,243,238,.3);text-decoration:none;
+  transition:color .3s;
+}
+.footer-links a:hover{color:var(--gold);}
+
+/* WA */
+.wa{
+  position:fixed;bottom:30px;right:30px;z-index:400;
+  width:54px;height:54px;border-radius:50%;
+  background:#25D366;display:flex;align-items:center;justify-content:center;
+  font-size:26px;text-decoration:none;
+  box-shadow:0 4px 24px rgba(0,0,0,.4);
+  transition:transform .2s;
+}
+.wa:hover{transform:scale(1.1);}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@keyframes scrollAnim{0%,100%{opacity:.3;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.4);}}
+
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.vis{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:.1s;}
+.reveal-delay-2{transition-delay:.2s;}
+.reveal-delay-3{transition-delay:.3s;}
+
+@media(max-width:900px){
+  nav{padding:18px 24px;}
+  .nav-links{display:none;}
+  section{padding:80px 24px;}
+  .hero{padding:0 24px 70px;}
+  .hero-stats{display:none;}
+  .hero h1{font-size:52px;}
+  .about{grid-template-columns:1fr;gap:40px;}
+  .projects-grid{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:repeat(2,1fr);}
+  .testi-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  footer{flex-direction:column;text-align:center;padding:28px 24px;}
+}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="curR"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">VOORA <small>CONSTRUCTION & REAL ESTATE</small></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#why">Why Voora</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact">NRI</a>
+  </div>
+  <button class="nav-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Enquire Now</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <svg class="hero-skyline" viewBox="0 0 1440 400" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
+    <rect x="0" y="200" width="60" height="200" fill="#C9A84C"/>
+    <rect x="20" y="160" width="20" height="40" fill="#C9A84C"/>
+    <rect x="80" y="240" width="80" height="160" fill="#C9A84C"/>
+    <rect x="100" y="200" width="40" height="40" fill="#C9A84C"/>
+    <rect x="180" y="150" width="50" height="250" fill="#C9A84C"/>
+    <rect x="190" y="120" width="30" height="30" fill="#C9A84C"/>
+    <rect x="250" y="220" width="70" height="180" fill="#C9A84C"/>
+    <rect x="340" y="180" width="90" height="220" fill="#C9A84C"/>
+    <rect x="360" y="140" width="50" height="40" fill="#C9A84C"/>
+    <rect x="380" y="100" width="10" height="40" fill="#C9A84C"/>
+    <rect x="450" y="250" width="60" height="150" fill="#C9A84C"/>
+    <rect x="530" y="170" width="100" height="230" fill="#C9A84C"/>
+    <rect x="550" y="130" width="60" height="40" fill="#C9A84C"/>
+    <rect x="570" y="90" width="20" height="40" fill="#C9A84C"/>
+    <rect x="650" y="210" width="70" height="190" fill="#C9A84C"/>
+    <rect x="740" y="160" width="110" height="240" fill="#C9A84C"/>
+    <rect x="760" y="110" width="70" height="50" fill="#C9A84C"/>
+    <rect x="790" y="70" width="10" height="40" fill="#C9A84C"/>
+    <rect x="870" y="230" width="80" height="170" fill="#C9A84C"/>
+    <rect x="970" y="190" width="90" height="210" fill="#C9A84C"/>
+    <rect x="990" y="150" width="50" height="40" fill="#C9A84C"/>
+    <rect x="1080" y="240" width="60" height="160" fill="#C9A84C"/>
+    <rect x="1160" y="180" width="100" height="220" fill="#C9A84C"/>
+    <rect x="1180" y="140" width="60" height="40" fill="#C9A84C"/>
+    <rect x="1280" y="220" width="70" height="180" fill="#C9A84C"/>
+    <rect x="1370" y="200" width="70" height="200" fill="#C9A84C"/>
+    <rect x="0" y="395" width="1440" height="5" fill="#C9A84C"/>
+  </svg>
+  <div class="hero-vline"></div>
+  <div class="hero-hline"></div>
+
+  <div class="hero-tag">
+    <div class="hero-tag-line"></div>
+    <span>Chennai's Premier Real Estate Builders Since 1990</span>
+  </div>
+  <h1>Building<br><em>Chennai's</em><br>Skyline</h1>
+  <p class="hero-sub">Three decades of trust, quality, and landmark residential & commercial spaces that define modern Chennai living.</p>
+  <div class="hero-actions">
+    <button class="btn-gold" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Explore Projects</button>
+    <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book Site Visit</button>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-block">
+      <div class="stat-num">30+</div>
+      <div class="stat-txt">YEARS LEGACY</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">5M+</div>
+      <div class="stat-txt">SQ.FT BUILT</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">2K+</div>
+      <div class="stat-txt">HAPPY FAMILIES</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">50+</div>
+      <div class="stat-txt">PROJECTS</div>
+    </div>
+  </div>
+
+  <div class="scroll-ind">
+    <span>Scroll</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="marquee-item">Voora One Sea</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Voora Westside</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Voora Agastya</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Voora Highway Haven</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Voora Beckford</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Voora Ocean's 27</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Voora Tech Edge</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Voora One Sea</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Voora Westside</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Voora Agastya</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Voora Highway Haven</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Voora Beckford</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Voora Ocean's 27</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Voora Tech Edge</span><span class="marquee-dot">✦</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-img reveal">
+    <div class="about-img-inner">V</div>
+    <div class="about-year-badge">
+      <div class="badge-big">30+</div>
+      <div class="badge-sm">YEARS OF<br>TRUST</div>
+    </div>
+  </div>
+  <div class="reveal reveal-delay-1">
+    <div class="sec-label">Our Legacy</div>
+    <h2 class="sec-title">One of Chennai's<br><em>Most Trusted</em><br>Builders</h2>
+    <div class="gold-rule"></div>
+    <p class="about-text" style="font-size:13px;color:rgba(247,243,238,.55);line-height:2;margin-bottom:14px;">Founded by Shri Voora Lakshminarasimha Rao and now led by his sons Pavan Voora and Suman Voora, Voora Construction has built a legacy spanning over 30 years across Chennai's most prized locations.</p>
+    <p class="about-text" style="font-size:13px;color:rgba(247,243,238,.55);line-height:2;margin-bottom:28px;">From sea-facing towers at ECR to smart homes in Ramapuram, every project is a testament to precision, sustainability, and timely completion — hallmarks of the Voora name.</p>
+    <div class="about-pills">
+      <span class="pill">IGBC Gold Rated</span>
+      <span class="pill">RERA Approved</span>
+      <span class="pill">20-Year Warranty</span>
+      <span class="pill">On-Time Delivery</span>
+      <span class="pill">265+ Quality Checks</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="projects-head">
+    <div class="reveal">
+      <div class="sec-label">Our Portfolio</div>
+      <h2 class="sec-title">Featured <em>Projects</em></h2>
+    </div>
+    <button class="btn-ghost reveal" style="height:fit-content;">View All Projects</button>
+  </div>
+  <div class="projects-grid">
+    <div class="proj-card reveal">
+      <div class="proj-bg"></div>
+      <div class="proj-overlay"></div>
+      <div class="proj-geo"><div class="proj-num">01</div></div>
+      <div class="proj-arrow">↗</div>
+      <div class="proj-inner">
+        <div class="proj-type">Residential · ECR · Sea Facing</div>
+        <div class="proj-name">Voora One Sea</div>
+        <div class="proj-loc">📍 Kanathur, East Coast Road</div>
+        <div class="proj-price">₹7,199 / sq.ft</div>
+        <div class="proj-tags">
+          <span class="proj-tag">2 & 3 BHK</span>
+          <span class="proj-tag">41 Floors</span>
+          <span class="proj-tag">1039 Units</span>
+          <span class="proj-tag">Ongoing</span>
+        </div>
+      </div>
+    </div>
+    <div class="proj-card reveal reveal-delay-1">
+      <div class="proj-bg"></div>
+      <div class="proj-overlay"></div>
+      <div class="proj-geo"><div class="proj-num">02</div></div>
+      <div class="proj-arrow">↗</div>
+      <div class="proj-inner">
+        <div class="proj-type">Residential · Ramapuram</div>
+        <div class="proj-name">Voora Westside</div>
+        <div class="proj-loc">📍 Manapakkam, Chennai</div>
+        <div class="proj-price">From ₹1 Cr</div>
+        <div class="proj-tags">
+          <span class="proj-tag">2 & 3 BHK</span>
+          <span class="proj-tag">Smart Home</span>
+          <span class="proj-tag">Ready to Occupy</span>
+        </div>
+      </div>
+    </div>
+    <div class="proj-card reveal reveal-delay-2">
+      <div class="proj-bg"></div>
+      <div class="proj-overlay"></div>
+      <div class="proj-geo"><div class="proj-num">03</div></div>
+      <div class="proj-arrow">↗</div>
+      <div class="proj-inner">
+        <div class="proj-type">Luxury · Tondiarpet · Sea Facing</div>
+        <div class="proj-name">Voora Agastya</div>
+        <div class="proj-loc">📍 Tondiarpet, Chennai</div>
+        <div class="proj-price">From ₹2.3 Cr</div>
+        <div class="proj-tags">
+          <span class="proj-tag">3 & 4 BHK</span>
+          <span class="proj-tag">Sea View</span>
+          <span class="proj-tag">Ongoing</span>
+        </div>
+      </div>
+    </div>
+    <div class="proj-card reveal reveal-delay-3">
+      <div class="proj-bg"></div>
+      <div class="proj-overlay"></div>
+      <div class="proj-geo"><div class="proj-num">04</div></div>
+      <div class="proj-arrow">↗</div>
+      <div class="proj-inner">
+        <div class="proj-type">Plots · Kanchipuram · NH48</div>
+        <div class="proj-name">Voora Highway Haven</div>
+        <div class="proj-loc">📍 Panapakkam, Kanchipuram</div>
+        <div class="proj-price">₹1,500 / sq.ft</div>
+        <div class="proj-tags">
+          <span class="proj-tag">DTCP Approved</span>
+          <span class="proj-tag">RERA</span>
+          <span class="proj-tag">Gated Community</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY VOORA -->
+<section class="why" id="why">
+  <div class="reveal" style="text-align:center;margin-bottom:0;">
+    <div class="sec-label" style="text-align:center;">Why Choose Us</div>
+    <h2 class="sec-title" style="text-align:center;">The Voora <em>Promise</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-num">01</div>
+      <span class="why-icon">🏆</span>
+      <div class="why-title">30+ Years Legacy</div>
+      <div class="why-desc">Three decades of delivering landmark projects across Chennai — trust earned, never assumed.</div>
+    </div>
+    <div class="why-card reveal reveal-delay-1">
+      <div class="why-num">02</div>
+      <span class="why-icon">🌿</span>
+      <div class="why-title">IGBC Gold Rated</div>
+      <div class="why-desc">Eco-certified green homes with 1000+ trees, water conservation and energy-efficient design.</div>
+    </div>
+    <div class="why-card reveal reveal-delay-2">
+      <div class="why-num">03</div>
+      <span class="why-icon">🔒</span>
+      <div class="why-title">20-Year Warranty</div>
+      <div class="why-desc">India's first 20-year structural warranty. 10-year warranty on fittings — built to last generations.</div>
+    </div>
+    <div class="why-card reveal reveal-delay-3">
+      <div class="why-num">04</div>
+      <span class="why-icon">⏱</span>
+      <div class="why-title">On-Time Delivery</div>
+      <div class="why-desc">265+ quality checkpoints. Stringent project management ensures your home is delivered as promised.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi" id="testi">
+  <div class="reveal">
+    <div class="sec-label">Happy Families</div>
+    <h2 class="sec-title">Client <em>Stories</em></h2>
+    <div class="gold-rule"></div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"The sea view from Voora One Sea is breathtaking. The quality of construction, transparency, and timely updates gave us complete confidence."</p>
+      <div class="testi-name">Ramesh Krishnamurthy</div>
+      <div class="testi-proj">Voora One Sea · ECR</div>
+    </div>
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Westside's zero dead space design and smart home integration was exactly what our family needed. Premium quality at excellent value."</p>
+      <div class="testi-name">Priya Subramaniam</div>
+      <div class="testi-proj">Voora Westside · Ramapuram</div>
+    </div>
+    <div class="testi-card reveal reveal-delay-2">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Invested in Highway Haven plots for the NH48 connectivity and growth potential. Voora's 30-year reputation and DTCP approval made the decision easy."</p>
+      <div class="testi-name">Anand Venkatesh</div>
+      <div class="testi-proj">Highway Haven · Kanchipuram</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-glow"></div>
+  <div class="sec-label reveal" style="margin-bottom:18px;">Get In Touch</div>
+  <h2 class="reveal"><em>Begin Your</em><br>Journey</h2>
+  <p class="contact-sub reveal">Book a free site visit — our team is ready to guide you</p>
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="contact-info-block">
+        <div class="ci-label">Address</div>
+        <div class="ci-val">Chennai, Tamil Nadu, India</div>
+      </div>
+      <div class="contact-info-block">
+        <div class="ci-label">Website</div>
+        <div class="ci-val">www.voora.co.in</div>
+      </div>
+      <div class="contact-info-block">
+        <div class="ci-label">Projects</div>
+        <div class="ci-val">ECR · Ramapuram · Tondiarpet · Kanchipuram · Nungambakkam</div>
+      </div>
+      <div class="contact-info-block">
+        <div class="ci-label">For NRI Buyers</div>
+        <div class="ci-val">Dedicated NRI assistance available</div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div class="form-row">
+        <div class="f-group">
+          <label class="f-label">Full Name</label>
+          <input class="f-input" type="text" placeholder="Your name">
+        </div>
+        <div class="f-group">
+          <label class="f-label">Phone</label>
+          <input class="f-input" type="tel" placeholder="+91 XXXXX XXXXX">
+        </div>
+      </div>
+      <div class="f-group">
+        <label class="f-label">Email</label>
+        <input class="f-input" type="email" placeholder="your@email.com">
+      </div>
+      <div class="f-group">
+        <label class="f-label">Interested Project</label>
+        <select class="f-select">
+          <option value="">Select a project</option>
+          <option>Voora One Sea — ECR (₹7,199/sqft)</option>
+          <option>Voora Westside — Ramapuram (From ₹1 Cr)</option>
+          <option>Voora Agastya — Tondiarpet (From ₹2.3 Cr)</option>
+          <option>Voora Beckford — Nungambakkam</option>
+          <option>Voora Highway Haven — Kanchipuram Plots</option>
+          <option>Other / Not sure</option>
+        </select>
+      </div>
+      <div class="f-group">
+        <label class="f-label">Message</label>
+        <textarea class="f-area" placeholder="Tell us about your requirements..."></textarea>
+      </div>
+      <button class="submit-btn">Book Free Site Visit →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">VOORA</div>
+  <div class="footer-copy">© 2025 Voora Construction & Real Estate · All Rights Reserved</div>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Disclaimer</a>
+    <a href="#">Careers</a>
+    <a href="https://voora.co.in" target="_blank">Visit Site</a>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/914400000000" title="WhatsApp">💬</a>
+
+<script>
+// Cursor
+const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`;
+});
+(function anim(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;
+  curR.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+  requestAnimationFrame(anim);})();
+document.querySelectorAll('a,button,.proj-card,.testi-card,.why-card,.stat-block').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{curR.style.width='58px';curR.style.height='58px';curR.style.borderColor='rgba(201,168,76,.8)';});
+  el.addEventListener('mouseleave',()=>{curR.style.width='40px';curR.style.height='40px';curR.style.borderColor='rgba(201,168,76,.4)';});
+});
+
+// Scroll nav
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+});
+
+// Reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*90);});
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
