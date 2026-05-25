@@ -25,12 +25,16 @@ app.get('/', (req, res) => {
   res.json({ message: 'Voora Construction API is running 🏗️', status: 'OK' });
 });
 
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/voora_db';
-const PORT = process.env.PORT || 5000;
+const MONGO_URI = process.env.MONGO_URI?.trim() || 'mongodb://127.0.0.1:27017/voora_db';
+const PORT = parseInt(process.env.PORT, 10) || 5001;
 const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:3000';
+
+mongoose.set('strictQuery', true);
 
 if (!process.env.MONGO_URI) {
   console.warn('⚠️ MONGO_URI not set. Falling back to local MongoDB at', MONGO_URI);
+} else {
+  console.log('Using MongoDB URI from environment');
 }
 
 // MongoDB Connection
